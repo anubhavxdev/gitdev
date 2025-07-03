@@ -29,34 +29,50 @@ export default async function Home(): Promise<React.JSX.Element> {
           </div>
         </div>
       </nav>
-      <div style={{ height: '64px' }} /> {/* Spacer for fixed navbar */}
-      <div className="flex min-h-screen flex-col items-center justify-between p-24" style={{ backgroundColor: 'black' }}>
+
+
+      <div style={{ height: '64px' }} />
+      <div
+        className="flex min-h-screen flex-col items-center justify-between p-24"
+        style={{
+          backgroundColor: 'black',
+          backgroundImage: `
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("https://wallpapercave.com/wp/wp3082255.jpg")
+          `,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          minHeight: '100vh',
+          width: '100%',
+        }}
+      >
         <h1 style={{ color: 'red', fontSize: '5rem', fontWeight: 'bold', letterSpacing: '2px', marginBottom: '24px' }}>
           GitDev
         </h1>
         <div>
-            <h2 style={{ color: 'white' }}>Welcome to GitDev</h2>
-            <p style={{ color: 'white' }}>Your personal GitHub repository management tool.</p>
-            <p style={{ color: 'white' }}>Explore, manage, and enhance your coding projects with ease.</p>
-            <p style={{ color: 'white' }}>Stay tuned for more features!</p>
-            <p style={{ color: 'white' }}>Happy coding!</p>
-            <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-              <span
-              style={{
-                display: 'inline-block',
-                fontWeight: 'bold',
-                fontSize: '2rem',
-                background: 'linear-gradient(90deg, #ff512f, #dd2476, #1fa2ff)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                marginTop: '16px',
-                letterSpacing: '2px',
-              }}
-              >
-              Coming Soon
-              </span>
-            </div>
+        <h2 style={{ color: 'white' }}>Welcome to GitDev</h2>
+        <p style={{ color: 'white' }}>Your personal GitHub repository management tool.</p>
+        <p style={{ color: 'white' }}>Explore, manage, and enhance your coding projects with ease.</p>
+        <p style={{ color: 'white' }}>Stay tuned for more features!</p>
+        <p style={{ color: 'white' }}>Happy coding!</p>
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <span
+          style={{
+            display: 'inline-block',
+            fontWeight: 'bold',
+            fontSize: '2rem',
+            background: 'linear-gradient(90deg, #ff512f, #dd2476, #1fa2ff)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            marginTop: '16px',
+            letterSpacing: '2px',
+          }}
+          >
+          Coming Soon
+          </span>
+        </div>
         </div>
         <Button className="mt-4" style={{ backgroundColor: 'red', color: 'white' }}>
           Get Started
