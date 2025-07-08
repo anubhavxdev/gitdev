@@ -25,7 +25,7 @@ export default function SignUpPage() {
             <SignUp
               path="/sign-up"
               routing="path"
-              redirectUrl="/"
+              redirectUrl="/dashboard"
               appearance={{
                 elements: {
                   card: "bg-transparent shadow-none border-none",

@@ -12,27 +12,40 @@ export default async function SyncUserPage() {
     const client = await clerkClient();
     const user = await client.users.getUser(userId);
 
-    if (!user.emailAddresses[0]?.emailAddress) {
+    const email = user.emailAddresses[0]?.emailAddress;
+
+    if (!email) {
         return notFound();
     }
 
-    await db.user.upsert({
+    const existingUser = await db.user.findUnique({
         where: {
-            emailAddress: user.emailAddresses[0]?.emailAddress ?? ""
-        },
-        update: {
-            imageUrl: user.imageUrl,
-            firstName: user.firstName,
-            lastName: user.lastName,
-        },
-        create: {
-            id: user.id,
-            emailAddress: user.emailAddresses[0]?.emailAddress ?? "",
-            imageUrl: user.imageUrl,
-            firstName: user.firstName,
-            lastName: user.lastName,
+            emailAddress: email
         }
     });
 
-    redirect('/dashboard');
+    if (existingUser) {
+        await db.user.update({
+            where: {
+                emailAddress: email
+            },
+            data: {
+                imageUrl: user.imageUrl,
+                firstName: user.firstName,
+                lastName: user.lastName,
+            }
+        });
+    } else {
+        await db.user.create({
+            data: {
+                id: user.id,
+                emailAddress: email,
+                imageUrl: user.imageUrl,
+                firstName: user.firstName,
+                lastName: user.lastName,
+            }
+        });
+    }
+
+   return redirect('/dashboard');
 }
