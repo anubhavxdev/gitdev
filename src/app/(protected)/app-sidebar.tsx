@@ -43,7 +43,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar
-      collapsible
+      collapsible="icon"
       variant="floating"
       className="bg-black text-white"
     >
