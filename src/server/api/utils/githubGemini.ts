@@ -54,7 +54,7 @@ export async function getGithubRepoInfo({ owner, repo, token }: { owner: string;
       const link = prsRes.headers.get('link');
       if (link && link.includes('rel="last"')) {
         const match = link.match(/&page=(\d+)>; rel="last"/);
-        openPrs = match ? parseInt(match[1], 10) : 1;
+        openPrs = match && match[1] ? parseInt(match[1], 10) : 1;
       } else {
         const arr = await prsRes.json();
         openPrs = arr.length;
