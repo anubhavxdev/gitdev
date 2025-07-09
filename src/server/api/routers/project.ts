@@ -25,7 +25,7 @@ export const projectRouter = createTRPCRouter({
       const latestCommits = commits.slice(0, 3);
       // Compose summary prompt
       const repoInfo = `Repository: ${parsed.owner}/${parsed.repo}\n` +
-        latestCommits.map((c, i) => `Commit #${i+1}: ${c.message}`).join('\n');
+        latestCommits.map((c: { message: string }, i: number) => `Commit #${i+1}: ${c.message}`).join('\n');
       // Ask Gemini for summary
       const summary = await getGeminiExplanation({
         commitMessage: `Summarize this repository and its latest commits:\n${repoInfo}`,
@@ -108,7 +108,7 @@ export const projectRouter = createTRPCRouter({
         sha,
         token: githubToken,
       });
-      const prompt = `Explain this commit in simple terms:\nCommit message: ${details.message}\nFiles changed: ${details.files.map(f => f.filename + ' (' + f.status + ')').join(', ')}`;
+      const prompt = `Explain this commit in simple terms:\nCommit message: ${details.message}\nFiles changed: ${details.files.map((f: { filename: string; status: string }) => f.filename + ' (' + f.status + ')').join(', ')}`;
       const explanation = await getGeminiExplanation({
         commitMessage: prompt,
         geminiApiKey,
