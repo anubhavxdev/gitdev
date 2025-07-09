@@ -4,12 +4,18 @@
 // https://trpc.io/docs/client/react/useMutation
 
 type MutationState = {
-  status: 'idle' | 'loading' | 'success' | 'error';
+  status: 'idle' | 'loading' | 'pending' | 'success' | 'error';
   isPending: boolean;
   isError: boolean;
   isSuccess: boolean;
+  isLoading?: boolean;
 };
 
 export function getMutationLoading(mutation: MutationState): boolean {
-  return mutation.isPending || mutation.status === 'loading';
+  return (
+    mutation.isPending || 
+    mutation.status === 'loading' || 
+    mutation.status === 'pending' ||
+    mutation.isLoading === true
+  );
 }

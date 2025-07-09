@@ -85,14 +85,14 @@ export const CreateForm = () => {
           />
           <button
             type="submit"
-            className="px-4 py-2 bg-red-600 text-white rounded"
-            disabled={getMutationLoading(createproject)}
+            className="px-4 py-2 bg-red-600 text-white rounded disabled:opacity-50"
+            disabled={createproject.isPending}
           >
-            {getMutationLoading(createproject) ? 'Linking...' : 'Link Repository'}
+            {createproject.isPending ? 'Linking...' : 'Link Repository'}
           </button>
         </form>
 
-        {getMutationLoading(createproject) && (
+        {createproject.isPending && (
           <div className="flex flex-col items-center mt-8">
             <svg className="animate-spin h-8 w-8 text-red-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -204,9 +204,9 @@ export const CreateForm = () => {
                     setIsSummarizing(false);
                   }
                 }}
-                disabled={isSummarizing || getMutationLoading(summarizeRepo)}
+                disabled={isSummarizing || summarizeRepo.isPending}
               >
-                {isSummarizing || getMutationLoading(summarizeRepo) ? 'Asking AI...' : 'Ask AI'}
+                {isSummarizing || summarizeRepo.isPending ? 'Asking AI...' : 'Ask AI'}
               </button>
               {summary && (
                 <div className="mt-4 p-4 bg-zinc-900 rounded text-white">
