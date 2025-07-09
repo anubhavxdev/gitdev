@@ -3,9 +3,12 @@ import fetch from 'node-fetch';
 // Parse a GitHub repo URL into { owner, repo }
 export function parseGithubUrl(url: string): { owner: string; repo: string } | null {
   try {
-    const match = url.match(/github.com\/(.+?)\/(.+?)(?:\.git|\/|$)/);
-    if (!match) return null;
-    return { owner: match[1], repo: match[2] };
+    const match = url.match(/github.com\/([^/]+)\/([^/]+?)(?:\.git|\/|$)/);
+    if (!match || !match[1] || !match[2]) return null;
+    return { 
+      owner: match[1], 
+      repo: match[2].replace(/\.git$/, '') 
+    };
   } catch {
     return null;
   }
