@@ -12,20 +12,28 @@ export const postRouter = createTRPCRouter({
     }),
 
   create: publicProcedure
-    .input(z.object({ name: z.string().min(1) }))
+    .input(z.object({ 
+      name: z.string().min(1),
+      description: z.string().optional(),
+      githubUrl: z.string().optional(),
+      userId: z.string()
+    }))
     .mutation(async ({ ctx, input }) => {
-      return ctx.db.post.create({
+      return ctx.db.project.create({
         data: {
           name: input.name,
+          description: input.description,
+          githubUrl: input.githubUrl,
+          userId: input.userId,
         },
       });
     }),
 
   getLatest: publicProcedure.query(async ({ ctx }) => {
-    const post = await ctx.db.post.findFirst({
+    const project = await ctx.db.project.findFirst({
       orderBy: { createdAt: "desc" },
     });
 
-    return post ?? null;
+    return project ?? null;
   }),
 });
