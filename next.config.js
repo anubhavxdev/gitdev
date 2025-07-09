@@ -29,12 +29,13 @@ const config = {
       },
     ],
   },
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     // Add path aliases
+    const dirname = path.dirname(new URL(import.meta.url).pathname);
     config.resolve.alias = {
       ...config.resolve.alias,
-      '~': path.resolve(__dirname, './src'),
-      '@': path.resolve(__dirname, './src'),
+      '~': path.resolve(dirname, './src'),
+      '@': path.resolve(dirname, './src'),
     };
     return config;
   },
