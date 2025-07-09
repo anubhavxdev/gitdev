@@ -1,109 +1,86 @@
-import * as React from 'react';
-import { Button } from '~/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
+'use client'
 
-export default async function Home(): Promise<React.JSX.Element> {
+import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
+
+export default function Home() {
   return (
     <>
-      <nav
-        style={{
-          width: '100%',
-          backgroundColor: '#1a1a1a',
-          padding: '16px 0',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          zIndex: 10,
-        }}
-      >
-        <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', maxWidth: '1200px', margin: '0 auto' }}>
-          <span style={{ color: 'red', fontWeight: 'bold', fontSize: '2rem', letterSpacing: '1px' }}>GitDev</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-            <a href="#" style={{ color: 'white', textDecoration: 'none', fontSize: '1rem' }}>Home</a>
-            <a href="#" style={{ color: 'white', textDecoration: 'none', fontSize: '1rem' }}>Features</a>
-            <a href="#" style={{ color: 'white', textDecoration: 'none', fontSize: '1rem' }}>About</a>
-            <a href="#" style={{ color: 'white', textDecoration: 'none', fontSize: '1rem' }}>Contact</a>
+      {/* NAVBAR */}
+      <nav className="w-full bg-black py-4 fixed top-0 left-0 z-10 flex justify-center">
+        <div className="w-full max-w-6xl flex justify-between items-center px-4">
+          <span className="text-red-600 font-bold text-3xl tracking-wide">
+            GitDev
+          </span>
+          <div className="flex gap-6">
+            <a href="#" className="text-white text-base hover:text-red-500">
+              Home
+            </a>
+            <a href="#" className="text-white text-base hover:text-red-500">
+              Features
+            </a>
+            <a href="#" className="text-white text-base hover:text-red-500">
+              About
+            </a>
+            <a href="#" className="text-white text-base hover:text-red-500">
+              Contact
+            </a>
           </div>
         </div>
       </nav>
 
+      {/* SPACER */}
+      <div className="h-16"></div>
 
-      <div style={{ height: '64px' }} />
+      {/* HERO */}
       <div
-        className="flex min-h-screen flex-col items-center justify-between p-24"
+        className="flex flex-col items-center justify-center px-4 py-12 min-h-screen w-full bg-black bg-cover bg-center"
         style={{
-          backgroundColor: 'black',
           backgroundImage: `
-        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-        url("https://wallpapercave.com/wp/wp3082255.jpg")
+            linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
+            url("https://wallpapercave.com/wp/wp3082255.jpg")
           `,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          minHeight: '100vh',
-          width: '100%',
         }}
       >
-        <h1 style={{ color: 'red', fontSize: '5rem', fontWeight: 'bold', letterSpacing: '2px', marginBottom: '24px' }}>
+        <h1 className="text-red-600 text-6xl font-bold tracking-widest mb-6">
           GitDev
         </h1>
-        <div>
-        <h2 style={{ color: 'white' }}>Welcome to GitDev</h2>
-        <p style={{ color: 'white' }}>Your personal GitHub repository management tool.</p>
-        <p style={{ color: 'white' }}>Explore, manage, and enhance your coding projects with ease.</p>
-        <p style={{ color: 'white' }}>Stay tuned for more features!</p>
-        <p style={{ color: 'white' }}>Happy coding!</p>
-        <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-          <span
-          style={{
-            display: 'inline-block',
-            fontWeight: 'bold',
-            fontSize: '2rem',
-            background: 'linear-gradient(90deg, #ff512f, #dd2476, #1fa2ff)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            marginTop: '16px',
-            letterSpacing: '2px',
-          }}
-          >
-          Coming Soon
-          </span>
+        <div className="text-center mb-8">
+          <h2 className="text-4xl font-bold text-white mb-2">
+            Welcome to GitDev
+          </h2>
+          <p className="text-lg text-zinc-200 mb-1">
+            Your personal GitHub repository management tool.
+          </p>
+          <p className="text-md text-zinc-300">
+            Explore, manage, and enhance your coding projects with ease.
+          </p>
         </div>
+        <div className="flex flex-col md:flex-row gap-4 mt-8 w-full max-w-md justify-center">
+          <a href="/dashboard" className="w-full md:w-auto">
+            <button className="w-full px-8 py-4 rounded-lg bg-red-600 hover:bg-red-700 text-white text-xl font-semibold shadow-lg transition">
+              Go to Dashboard
+            </button>
+          </a>
+          <a href="/demo" className="w-full md:w-auto">
+            <button className="w-full px-8 py-4 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white text-xl font-semibold border border-zinc-700 shadow-lg transition">
+              Try Demo
+            </button>
+          </a>
         </div>
-        <Button className="mt-4" style={{ backgroundColor: 'red', color: 'white' }}>
-          Get Started
-        </Button>
-
-        <footer
-          style={{
-            color: 'white',
-            backgroundColor: '#1a1a1a',
-            padding: '16px 0',
-            width: '100vw',
-            position: 'fixed',
-            left: 0,
-            bottom: 0,
-            zIndex: 10,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <p>© 2023 GitDev. All rights reserved.</p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '4px' }}>
-            <span>Built with ❤️ by </span>
-            <Avatar>
-              <AvatarImage src="https://github.com/anubhavxdev.png" />
-              <AvatarFallback>AJ</AvatarFallback>
-            </Avatar>
-            <span>Anubhav aka "Logic"</span>
-          </div>
-        </footer>
       </div>
+
+      {/* FOOTER */}
+      <footer className="w-full bg-black py-4 text-white fixed bottom-0 left-0 z-10 flex flex-col items-center text-sm">
+        <p>© 2023 GitDev. All rights reserved.</p>
+        <div className="flex gap-2 items-center mt-1">
+          <span>Built with ❤️ by</span>
+          <Avatar className="h-6 w-6">
+            <AvatarImage src="https://github.com/anubhavxdev.png" />
+            <AvatarFallback>AJ</AvatarFallback>
+          </Avatar>
+          <span>Anubhav aka &quot;Logic&quot;</span>
+        </div>
+      </footer>
     </>
-  );
+  )
 }

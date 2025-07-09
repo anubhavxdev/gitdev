@@ -26,26 +26,10 @@ import {
 import { Button } from '~/components/ui/button'
 
 const items = [
-  {
-    title: 'Dashboard',
-    url: '/dashboard',
-    icon: LayoutDashboardIcon,
-  },
-  {
-    title: 'Q&A',
-    url: '/qa',
-    icon: BotIcon,
-  },
-  {
-    title: 'Meetings',
-    url: '/meetings',
-    icon: Presentation,
-  },
-  {
-    title: 'Billing',
-    url: '/billing',
-    icon: CreditCardIcon,
-  },
+  { title: 'Dashboard', url: '/dashboard', icon: LayoutDashboardIcon },
+  { title: 'Q&A', url: '/qa', icon: BotIcon },
+  { title: 'Meetings', url: '/meetings', icon: Presentation },
+  { title: 'Billing', url: '/billing', icon: CreditCardIcon },
 ]
 
 const projects = [
@@ -58,13 +42,19 @@ export function AppSidebar() {
   const pathname = usePathname()
 
   return (
-    <Sidebar collapsible variant="floating">
-      <SidebarHeader>Logo</SidebarHeader>
+    <Sidebar
+      collapsible
+      variant="floating"
+      className="bg-black text-white"
+    >
+      <SidebarHeader className="text-2xl font-bold">
+  <span className="text-red-500 drop-shadow-neon">Git</span><span className="text-white drop-shadow-neon">DEV</span>
+</SidebarHeader>
 
       <SidebarContent>
         {/* Application Section */}
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-red-600">Application</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -73,9 +63,9 @@ export function AppSidebar() {
                     <Link
                       href={item.url}
                       className={cn(
-                        'flex gap-2 items-center px-2 py-1 rounded hover:bg-primary/10',
+                        'flex gap-2 items-center px-2 py-1 rounded hover:bg-red-600/20',
                         {
-                          'bg-primary text-white': pathname === item.url,
+                          'bg-red-600 text-white': pathname === item.url,
                         }
                       )}
                     >
@@ -91,7 +81,7 @@ export function AppSidebar() {
 
         {/* Projects Section */}
         <SidebarGroup>
-          <SidebarGroupLabel>Your Projects</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-red-600">Your Projects</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {projects.map((project) => (
@@ -100,17 +90,17 @@ export function AppSidebar() {
                     <Link
                       href={project.url}
                       className={cn(
-                        'flex gap-2 items-center px-2 py-1 rounded hover:bg-primary/10',
+                        'flex gap-2 items-center px-2 py-1 rounded hover:bg-red-600/20',
                         {
-                          'bg-primary text-white': pathname === project.url,
+                          'bg-red-600 text-white': pathname === project.url,
                         }
                       )}
                     >
                       <div
                         className={cn(
-                          'rounded-sm border size-6 flex items-center justify-center text-xs bg-white text-primary mr-2',
+                          'rounded-sm border size-6 flex items-center justify-center text-xs bg-white text-red-600 mr-2',
                           {
-                            'bg-primary text-white': pathname === project.url,
+                            'bg-red-600 text-white': pathname === project.url,
                           }
                         )}
                       >
@@ -129,7 +119,7 @@ export function AppSidebar() {
                   <Link href="/create">
                     <Button
                       variant="outline"
-                      className="w-full flex gap-2 items-center justify-center"
+                      className="w-full flex gap-2 items-center justify-center border-red-600 text-red-600 hover:bg-red-600/20"
                     >
                       <Plus size={16} />
                       Create Project
