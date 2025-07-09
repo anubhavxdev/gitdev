@@ -3,8 +3,13 @@
 // The correct property for loading state is 'status' (not 'isLoading')
 // https://trpc.io/docs/client/react/useMutation
 
-import type { UseTRPCMutationResult } from '@trpc/react-query';
+type MutationState = {
+  status: 'idle' | 'loading' | 'success' | 'error';
+  isPending: boolean;
+  isError: boolean;
+  isSuccess: boolean;
+};
 
-export function getMutationLoading(mutation: { status: string }) {
-  return mutation.status === 'loading';
+export function getMutationLoading(mutation: MutationState): boolean {
+  return mutation.isPending || mutation.status === 'loading';
 }
