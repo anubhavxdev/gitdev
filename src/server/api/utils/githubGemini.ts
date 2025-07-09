@@ -110,7 +110,7 @@ interface GitHubRepoInfo {
 // Parse a GitHub repo URL into { owner, repo }
 export function parseGithubUrl(url: string): { owner: string; repo: string } | null {
   try {
-    const match = url.match(/github.com\/([^/]+)\/([^/]+?)(?:\.git|\/|$)/);
+    const match = /github.com\/([^/]+)\/([^/]+?)(?:\.git|\/|$)/.exec(url);
     if (!match?.[1] || !match[2]) return null;
     return { 
       owner: match[1], 
@@ -134,12 +134,13 @@ export async function getGithubRepoInfo({
 }): Promise<GitHubRepoInfo> {
   try {
     // Fetch repo details
-    const repoRes = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+    const repoRes = await fetch(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`, {
       headers: token ? { Authorization: `token ${token}` } : {},
     });
     
     if (!repoRes.ok) {
-      throw new Error(`Failed to fetch repo info: ${repoRes.status} ${repoRes.statusText}`);
+      const errorText = await repoRes.text().catch(() => repoRes.statusText);
+      throw new Error(`Failed to fetch repo info: ${repoRes.status} ${errorText}`);
     }
     
     const repoData: GitHubRepo = await repoRes.json();
@@ -184,7 +185,7 @@ export async function getGithubRepoInfo({
     let openPrs: number | null = null;
     try {
       const prsRes = await fetch(
-        `https://api.github.com/repos/${owner}/${repo}/pulls?state=open&per_page=1`,
+        `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/pulls?state=open&per_page=1`,
         { headers: token ? { Authorization: `token ${token}` } : {} }
       );
       
@@ -353,8 +354,17 @@ export async function getGeminiExplanation({
       throw new Error('Failed to get explanation from Gemini API');
     }
 
-    const data = await res.json();
-    return data.candidates?.[0]?.content?.parts?.[0]?.text || 'No explanation available.';
+    const data = (await res.json()) as {
+      candidates?: Array<{
+        content?: {
+          parts?: Array<{
+            text?: string;
+          }>;
+        };
+      }>;
+    };
+    
+    return data.candidates?.[0]?.content?.parts?.[0]?.text ?? 'No explanation available.';
   } catch (error) {
     console.error('Error in getGeminiExplanation:', error);
     throw error;
