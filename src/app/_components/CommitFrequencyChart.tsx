@@ -12,20 +12,31 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-function groupCommitsByDate(commits: { date: string }[], days = 14) {
+interface Commit {
+  date: string | null | undefined;
+}
+
+function groupCommitsByDate(commits: Commit[], days = 14): { [date: string]: number } {
   const now = new Date();
   const buckets: { [date: string]: number } = {};
+  
+  // Initialize buckets for the last N days
   for (let i = days - 1; i >= 0; i--) {
     const d = new Date(now);
     d.setDate(d.getDate() - i);
     const key = d.toISOString().slice(0, 10);
     buckets[key] = 0;
   }
-  for (const c of commits) {
-    if (!c.date) continue;
-    const key = c.date.slice(0, 10);
-    if (key in buckets) buckets[key]++;
+  
+  // Count commits per day
+  for (const commit of commits) {
+    if (!commit.date) continue;
+    const key = commit.date.slice(0, 10);
+    if (buckets.hasOwnProperty(key)) {
+      buckets[key] = (buckets[key] || 0) + 1;
+    }
   }
+  
   return buckets;
 }
 
