@@ -138,9 +138,12 @@ const PricingPage = () => {
                 </div>
               )}
               
-              <div className="flex items-center gap-3 mb-6">
-                {plan.icon}
-                <h3 className="text-2xl font-bold text-white">{plan.name}</h3>
+              <div className="min-h-screen bg-black text-gray-100 px-4 py-8">
+                <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent mb-6">Pricing</h1>
+                <div className="flex items-center gap-3 mb-6">
+                  {plan.icon}
+                  <h3 className="text-2xl font-bold text-white">{plan.name}</h3>
+                </div>
               </div>
               
               <div className="mb-6">
@@ -166,7 +169,7 @@ const PricingPage = () => {
               
               {isSignedIn ? (
                 <Link 
-                  href={plan.name === 'Enterprise' ? '/contact' : '/dashboard/billing'}
+                  href={plan.name === 'Enterprise' ? '/contact' : '/features'}
                   className={`block w-full text-center py-3 px-6 rounded-lg font-medium transition-all ${
                     plan.popular 
                       ? 'bg-gradient-to-r from-red-600 to-pink-600 text-white hover:from-red-500 hover:to-pink-500 hover:shadow-[0_0_20px_rgba(239,68,68,0.4)]' 

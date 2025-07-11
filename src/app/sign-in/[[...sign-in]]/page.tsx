@@ -25,7 +25,7 @@ export default function SignInPage() {
             <SignIn
               path="/sign-in"
               routing="path"
-              redirectUrl="dashboard"
+              redirectUrl="/features"
               appearance={{
                 elements: {
                   card: "bg-transparent shadow-none border-none",

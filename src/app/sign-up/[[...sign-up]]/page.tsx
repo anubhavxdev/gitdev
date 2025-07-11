@@ -14,9 +14,9 @@ export default function SignUpPage() {
       <div className="flex flex-col md:flex-row max-w-5xl w-full bg-zinc-900/80 rounded-lg overflow-hidden border-2 border-zinc-800 shadow-2xl">
         {/* Left Side */}
         <div className="flex-1 flex justify-center items-center p-8 md:p-12 border-b md:border-b-0 md:border-r border-zinc-800">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-center leading-snug bg-gradient-to-r from-red-600 via-red-500 to-red-700 bg-clip-text text-transparent">
-            Join <br /> GitDev
-          </h1>
+          <div className="px-4 py-8">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent mb-6">Join GitDev</h1>
+          </div>
         </div>
 
         {/* Right Side */}
@@ -25,7 +25,7 @@ export default function SignUpPage() {
             <SignUp
               path="/sign-up"
               routing="path"
-              redirectUrl="/dashboard"
+              redirectUrl="/features"
               appearance={{
                 elements: {
                   card: "bg-transparent shadow-none border-none",

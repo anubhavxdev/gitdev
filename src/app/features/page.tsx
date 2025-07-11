@@ -164,21 +164,14 @@ const FeaturesPage = () => {
             </p>
             
             <div className="flex flex-wrap justify-center gap-6">
-              {isSignedIn ? (
-                <Link href="/dashboard">
-                  <Button className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-500 hover:to-pink-500 text-white font-medium px-8 py-6 text-lg rounded-xl shadow-lg shadow-red-500/20 hover:shadow-red-400/30 transition-all duration-300 group hover:drop-shadow-[0_0_15px_rgba(239,68,68,0.7)]">
-                    Go to Dashboard
-                    <Zap className="ml-2 h-5 w-5 group-hover:animate-pulse" />
-                  </Button>
-                </Link>
-              ) : (
-                <SignUpButton mode="modal">
-                  <Button className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-500 hover:to-pink-500 text-white font-medium px-8 py-6 text-lg rounded-xl shadow-lg shadow-red-500/20 hover:shadow-red-400/30 transition-all duration-300 group hover:drop-shadow-[0_0_15px_rgba(239,68,68,0.7)]">
-                    Get Started for Free
-                    <Zap className="ml-2 h-5 w-5 group-hover:animate-pulse" />
-                  </Button>
-                </SignUpButton>
-              )}
+              {!isSignedIn && (
+  <SignUpButton mode="modal">
+    <Button className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-500 hover:to-pink-500 text-white font-medium px-8 py-6 text-lg rounded-xl shadow-lg shadow-red-500/20 hover:shadow-red-400/30 transition-all duration-300 group hover:drop-shadow-[0_0_15px_rgba(239,68,68,0.7)]">
+      Get Started for Free
+      <Zap className="ml-2 h-5 w-5 group-hover:animate-pulse" />
+    </Button>
+  </SignUpButton>
+)}
               <Link href="/pricing">
                 <Button variant="outline" className="bg-transparent border-red-500/30 text-red-300 hover:bg-red-900/20 hover:border-red-400/50 hover:text-white font-medium px-8 py-6 text-lg rounded-xl transition-all duration-300">
                   View Pricing
@@ -301,21 +294,14 @@ const FeaturesPage = () => {
               Join thousands of developers and teams who are building amazing things with GitDev.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              {isSignedIn ? (
-                <Link href="/dashboard">
-                  <Button className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-500 hover:to-pink-500 text-white font-medium px-8 py-6 text-lg rounded-xl shadow-lg shadow-red-500/20 hover:shadow-red-400/30 transition-all duration-300 group hover:drop-shadow-[0_0_15px_rgba(239,68,68,0.7)]">
-                    Go to Dashboard
-                    <Zap className="ml-2 h-5 w-5 group-hover:animate-pulse" />
-                  </Button>
-                </Link>
-              ) : (
-                <SignUpButton mode="modal">
-                  <Button className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-500 hover:to-pink-500 text-white font-medium px-8 py-6 text-lg rounded-xl shadow-lg shadow-red-500/20 hover:shadow-red-400/30 transition-all duration-300 group hover:drop-shadow-[0_0_15px_rgba(239,68,68,0.7)]">
-                    Get Started for Free
-                    <Zap className="ml-2 h-5 w-5 group-hover:animate-pulse" />
-                  </Button>
-                </SignUpButton>
-              )}
+              {!isSignedIn && (
+  <SignUpButton mode="modal">
+    <Button className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-500 hover:to-pink-500 text-white font-medium px-8 py-6 text-lg rounded-xl shadow-lg shadow-red-500/20 hover:shadow-red-400/30 transition-all duration-300 group hover:drop-shadow-[0_0_15px_rgba(239,68,68,0.7)]">
+      Get Started for Free
+      <Zap className="ml-2 h-5 w-5 group-hover:animate-pulse" />
+    </Button>
+  </SignUpButton>
+)}
               <Link href="/pricing">
                 <Button variant="outline" className="bg-transparent border-red-500/30 text-red-300 hover:bg-red-900/20 hover:border-red-400/50 hover:text-white font-medium px-8 py-6 text-lg rounded-xl transition-all duration-300">
                   View Pricing
